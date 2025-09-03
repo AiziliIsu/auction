@@ -1,94 +1,125 @@
-Online Auction System
-A Spring Boot-based online auction system that allows users to create auctions, place bids, and manage the auction lifecycle.
-Project Overview
-This Online Auction System is built using Spring Boot 3.4 with a PostgreSQL database. The system provides RESTful APIs for user registration, auction management, and bidding functionality.
-Key Features
+## Online Auction System: A Project Overview
 
-User registration and authentication
-Create and manage auctions
-Place bids on active auctions
-Track auction status (PENDING, ACTIVE, ENDED, CANCELLED)
-View bid history and auction winners
-Real-time validation of bids and auction status
+This document describes a **Spring Boot-based online auction system** that enables users to create and manage auctions, place bids, and track the entire auction lifecycle. The system is designed with a focus on providing **RESTful APIs** and uses a PostgreSQL database for data persistence.
 
-Technology Stack
+-----
 
-Java 17
-Spring Boot 3.4
-Spring Security
-Spring Data JPA
-PostgreSQL Database
-Gradle
-JUnit 5 & Mockito for testing
-Swagger/OpenAPI for API documentation
+## Key Features & Functionality
 
-Database Schema
-The system uses three main tables:
+The system includes a range of features to support a full auction experience:
 
-users: Stores user information and authentication details
-auctions: Manages auction items and their status
-bids: Tracks all bids placed on auctions
+  * **User Management:** Handles user registration, authentication, and the management of user profiles.
+  * **Auction Lifecycle:** Allows users to create new auctions and manage their status, including `PENDING`, `ACTIVE`, `ENDED`, and `CANCELLED`.
+  * **Bidding:** Enables users to place bids on active auctions and provides real-time validation to ensure bids are valid.
+  * **Tracking:** Users can view the bidding history for a specific auction and see who the winner is once the auction ends.
 
-Setup Instructions
+-----
 
-Prerequisites
+## Technology Stack
 
-Java 17 or higher
-PostgreSQL 12 or higher
-Gradle 7.x
+The project is built with modern and widely used technologies:
 
+  * **Backend:**
+      * **Java 17:** The core programming language.
+      * **Spring Boot 3.4:** The framework for building the application.
+      * **Spring Security:** Manages user authentication and authorization.
+      * **Spring Data JPA:** Simplifies database interactions.
+  * **Database:** **PostgreSQL** is used for storing all application data.
+  * **Build & Testing:**
+      * **Gradle:** The build automation tool.
+      * **JUnit 5 & Mockito:** Used for comprehensive unit and integration testing.
+  * **API Documentation:** **Swagger/OpenAPI** is integrated to provide clear and interactive API documentation.
 
-Database Setup
-sqlCopyCREATE DATABASE auction_system;
-\c auction_system;
--- Tables are created automatically via JPA
+-----
 
-Application Configuration
+## Database Schema
 
-Update application.properties with your database credentials
-Default port: 8080
+The system uses a simple and logical database structure with three primary tables to manage its data:
 
+  * `users`: Stores user information and authentication credentials.
+  * `auctions`: Contains details about auction items and their current status.
+  * `bids`: Records all bids placed on auctions.
 
-Build & Run
-bashCopy./gradlew build
-./gradlew bootRun
+-----
 
+## Setup & Configuration
 
-API Endpoints
-User Management
+To get the system up and running, follow these steps:
 
-POST /api/users/register - Register new user
-GET /api/users/{id} - Get user details
+### Prerequisites
 
-Auction Management
+Make sure you have the following software installed:
 
-POST /api/auctions - Create new auction
-GET /api/auctions/{id} - Get auction details
-GET /api/auctions/active - List active auctions
-PUT /api/auctions/{id} - Update auction
-DELETE /api/auctions/{id} - Delete auction
+  * Java 17 or higher
+  * PostgreSQL 12 or higher
+  * Gradle 7.x
 
-Bid Management
+### Database Setup
 
-POST /api/bids - Place bid
-GET /api/bids/auction/{auctionId} - Get auction bids
-GET /api/bids/user/{userId} - Get user bids
-GET /api/bids/auction/{auctionId}/highest - Get highest bid
+1.  Create a new database for the project:
+    ```sql
+    CREATE DATABASE auction_system;
+    ```
+2.  The tables will be automatically created by JPA when the application starts.
 
-Testing
-The project includes comprehensive test coverage:
+### Application Configuration
 
-Controller tests using MockMvc
-Service layer tests with Mockito
-Integration tests for critical workflows
+  * Update the `application.properties` file with your specific PostgreSQL database credentials.
+  * The application runs on port `8080` by default.
 
-API Documentation
-Access the Swagger UI documentation at:
-Copyhttp://localhost:8080/swagger-ui.html
-Future Enhancements
+### Build and Run
 
-Real-time notifications for bid updates
-Payment integration
-User ratings and feedback
-Advanced search and filtering
-Auction categories and tags
+1.  Build the project using Gradle:
+    ```bash
+    ./gradlew build
+    ```
+2.  Start the application:
+    ```bash
+    ./gradlew bootRun
+    ```
+
+-----
+
+## API Endpoints
+
+The system provides a clear set of RESTful endpoints for interacting with the application.
+
+### User Management
+
+  * `POST /api/users/register`: Registers a new user.
+  * `GET /api/users/{id}`: Retrieves details for a specific user.
+
+### Auction Management
+
+  * `POST /api/auctions`: Creates a new auction.
+  * `GET /api/auctions/{id}`: Retrieves details for a specific auction.
+  * `GET /api/auctions/active`: Lists all active auctions.
+  * `PUT /api/auctions/{id}`: Updates an existing auction.
+  * `DELETE /api/auctions/{id}`: Deletes an auction.
+
+### Bid Management
+
+  * `POST /api/bids`: Places a new bid on an auction.
+  * `GET /api/bids/auction/{auctionId}`: Gets all bids for a specific auction.
+  * `GET /api/bids/user/{userId}`: Gets all bids placed by a specific user.
+  * `GET /api/bids/auction/{auctionId}/highest`: Retrieves the highest bid for a specific auction.
+
+-----
+
+## Testing & Documentation
+
+The project includes thorough test coverage and API documentation to ensure stability and ease of use.
+
+  * **Testing:** The project includes `Controller`, `Service`, and `Integration` tests to ensure critical functionality works as expected.
+  * **API Documentation:** The API documentation, generated by Swagger UI, can be accessed at `http://localhost:8080/swagger-ui.html`.
+
+-----
+
+## Future Enhancements
+
+The project is built with future growth in mind. Potential additions include:
+
+  * **Real-time Notifications:** Alerts users about new bids or auction status changes.
+  * **Payment Integration:** Adds a secure way for auction winners to pay.
+  * **User Ratings and Feedback:** Allows users to rate each other and provide feedback.
+  * **Advanced Features:** Introduces search and filtering capabilities, as well as auction categories and tags.
